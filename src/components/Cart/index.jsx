@@ -9,10 +9,12 @@ const Cart = () => {
     const products = useSelector((state) => state.product.products);
     const count = useSelector((state) => state.product.count);
     const summary = useMemo(() => {
-        return products.reduce((sum, product) => {
-            if (product.inCart === 0) return sum;
-            return sum + product.inCart * product.price;
-        }, 0);
+        return products
+            .reduce((sum, product) => {
+                if (product.inCart === 0) return sum;
+                return sum + product.inCart * product.price;
+            }, 0)
+            .toFixed(2);
     }, [products]);
 
     const hadleDeleteAll = () => {

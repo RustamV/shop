@@ -15,7 +15,7 @@ const Controls = ({ direction, product }) => {
     };
 
     const handleDeleteFromCart = () => {
-        dispatch(deleteFromCart(product));
+        dispatch(deleteFromCart({ product }));
     };
 
     return (
