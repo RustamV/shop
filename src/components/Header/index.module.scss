@@ -1,0 +1,33 @@
+.header {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 4px 4px;
+    border-top: none;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.logo {
+    margin: 0;
+    font-size: 30px;
+}
+
+.button {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    justify-content: center;
+}

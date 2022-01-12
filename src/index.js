@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import store from "./store";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { App } from "./components";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+Storage.prototype.setObj = function (key, obj) {
+    return this.setItem(key, JSON.stringify(obj));
+};
+Storage.prototype.getObj = function (key) {
+    return JSON.parse(this.getItem(key));
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const start = ({ dealers }) => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <App dealers={dealers} />
+            </BrowserRouter>
+        </Provider>,
+        document.getElementById("root")
+    );
+};
+
+window.app = {
+    start
+};

@@ -1,0 +1,15 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.empty {
+    margin: 0;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
