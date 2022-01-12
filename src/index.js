@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { App } from "./components";
 import "./index.css";
 
@@ -16,9 +16,9 @@ Storage.prototype.getObj = function (key) {
 const start = ({ dealers }) => {
     ReactDOM.render(
         <Provider store={store}>
-            <BrowserRouter>
+            <HashRouter basename="/">
                 <App dealers={dealers} />
-            </BrowserRouter>
+            </HashRouter>
         </Provider>,
         document.getElementById("root")
     );
