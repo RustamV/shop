@@ -3,11 +3,10 @@ const LSName = "shop";
 const localStorageMW = () => (next) => (action) => {
     const result = next(action);
     const LSCart = localStorage.getObj(LSName) ?? [];
-    const findProduct = (product) => product.name === result.payload.name;
 
     switch (result.type) {
         case "product/addToCart": {
-            const addition = LSCart.find(findProduct);
+            const addition = LSCart.find((product) => product.name === result.payload.name);
             if (addition) {
                 addition.inCart++;
             } else {
@@ -18,9 +17,10 @@ const localStorageMW = () => (next) => (action) => {
         }
         case "product/deleteFromCart": {
             let newLSCart = LSCart;
-            const deletion = newLSCart.find(findProduct);
-            if (deletion.inCart === 1) {
-                newLSCart = newLSCart.filter((product) => product.name !== result.payload.name);
+            const { product: newProduct, flag } = result.payload;
+            const deletion = newLSCart.find((product) => product.name === newProduct.name);
+            if (deletion.inCart === 1 || flag === "all") {
+                newLSCart = newLSCart.filter((product) => product.name !== newProduct.name);
             } else {
                 deletion.inCart--;
             }

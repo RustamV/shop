@@ -1,7 +1,15 @@
-import { Controls } from "..";
+import { Button, Controls } from "..";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../../store/slices/product";
 import styles from "./index.module.scss";
 
 const CartItem = ({ product }) => {
+    const dispatch = useDispatch();
+
+    const handleDelete = () => {
+        dispatch(deleteFromCart({ product, flag: "all" }));
+    };
+
     return (
         <div className={styles.product}>
             <img
@@ -15,7 +23,10 @@ const CartItem = ({ product }) => {
                 <h5 className={styles.title}>{product.name}</h5>
                 <p className={styles.price}>Price: {product.price}$</p>
             </div>
-            <Controls product={product} direction="vertical" />
+            <div className={styles.right}>
+                <Controls product={product} />
+                <Button onClick={handleDelete}>Delete</Button>
+            </div>
         </div>
     );
 };

@@ -28,12 +28,19 @@ const product = createSlice({
             }
         },
         deleteFromCart(state, action) {
-            const searchingProduct = state.products.find((item) => item.id === action.payload.id);
+            const { product, flag } = action.payload;
+            const searchingProduct = state.products.find((item) => item.id === product.id);
+
             if (searchingProduct) {
-                if (searchingProduct.inCart === 1) {
+                if (flag === "all") {
+                    searchingProduct.inCart = 0;
                     state.count--;
+                } else {
+                    if (searchingProduct.inCart === 1) {
+                        state.count--;
+                    }
+                    searchingProduct.inCart--;
                 }
-                searchingProduct.inCart--;
             }
         },
         deleteAllFromCart(state) {
